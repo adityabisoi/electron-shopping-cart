@@ -5,6 +5,7 @@ const path=require('path')
 const {app,BrowserWindow,Menu}=electron
 
 let mainWindow
+let addItemWindow
 
 app.on('ready',()=>{
     mainWindow=new BrowserWindow({})
@@ -16,13 +17,26 @@ app.on('ready',()=>{
     Menu.setApplicationMenu(mainMenu)
 })
 
+const createAddItemWindow = () => {
+    addItemWindow=new BrowserWindow({
+        title:'Add new item',
+        width:200,
+        height:300
+    })
+    // Load HTML
+    addItemWindow.loadURL(`file://${__dirname}/addItemWindow.html`)
+}
+
 // Menu template
 const mainMenuTemplate=[
     {
         label:'File',
         submenu:[
             {
-                label: 'Add an item'
+                label: 'Add an item',
+                click(){
+                    createAddItemWindow()
+                }
             },
             {
                 label: 'Clear items'
