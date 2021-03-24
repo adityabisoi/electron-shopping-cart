@@ -19,6 +19,20 @@ app.on('ready',()=>{
 // Menu template
 const mainMenuTemplate=[
     {
-        label:'File'
+        label:'File',
+        submenu:[
+            {
+                label: 'Add an item'
+            },
+            {
+                label: 'Clear items'
+            },
+            {
+                label: 'Quit',
+                click(){
+                    app.quit()
+                }
+            }
+        ]
     }
 ]
