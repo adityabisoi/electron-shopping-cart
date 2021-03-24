@@ -12,6 +12,11 @@ app.on('ready',()=>{
     // Load HTML
     mainWindow.loadURL(`file://${__dirname}/mainWindow.html`)
 
+    // Close application on main window close
+    mainWindow.on('close',()=>{
+        app.quit()
+    })
+
     // Build menu from template
     const mainMenu=Menu.buildFromTemplate(mainMenuTemplate)
     Menu.setApplicationMenu(mainMenu)
@@ -20,8 +25,8 @@ app.on('ready',()=>{
 const createAddItemWindow = () => {
     addItemWindow=new BrowserWindow({
         title:'Add new item',
-        width:200,
-        height:300
+        width:300,
+        height:200
     })
     // Load HTML
     addItemWindow.loadURL(`file://${__dirname}/addItemWindow.html`)
