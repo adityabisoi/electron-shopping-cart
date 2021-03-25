@@ -4,6 +4,20 @@
     <title>Shopping list</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>Shopping List</h1>
+    <ul></ul>
 </body>
+<script>
+        const electron=require('electron')
+        const {ipcRenderer}=electron
+        const ul=document.querySelector('ul')
+
+        ipcRenderer.on('item:add',(e,item)=>{
+            const li=document.createElement('li')
+            const text=document.createTextNode(item)
+            li.appendChild(text)
+            ul.appendChild(li)
+        })
+
+</script>
 </html>
