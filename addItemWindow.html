@@ -11,5 +11,19 @@
         </div>
         <button type="submit">Add item</button>
     </form>
+
+    <script>
+        const electron=require('electron')
+        const {ipcRenderer}=electron
+
+        const submitForm=(e)=>{
+            e.preventDefault()
+            console.log('abc')
+        }
+
+        const form=document.querySelector('form')
+        form.addEventListener('submit',submitForm)
+    </script>
+
 </body>
 </html>

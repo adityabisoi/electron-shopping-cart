@@ -4,11 +4,14 @@ const path=require('path')
 
 const {app,BrowserWindow,Menu}=electron
 
-let mainWindow
-let addItemWindow
-
 app.on('ready',()=>{
-    mainWindow=new BrowserWindow({})
+    const mainWindow=new BrowserWindow({
+        webPreferences:{
+            nodeIntegration:true,
+            contextIsolation: false,
+            enableRemoteModule: true
+        }
+    })
     // Load HTML
     mainWindow.loadURL(`file://${__dirname}/mainWindow.html`)
 
@@ -23,10 +26,15 @@ app.on('ready',()=>{
 })
 
 const createAddItemWindow = () => {
-    addItemWindow=new BrowserWindow({
+    const addItemWindow=new BrowserWindow({
         title:'Add new item',
         width:300,
-        height:200
+        height:200,
+        webPreferences:{
+            nodeIntegration:true,
+            contextIsolation: false,
+            enableRemoteModule: true
+        }
     })
     // Load HTML
     addItemWindow.loadURL(`file://${__dirname}/addItemWindow.html`)
