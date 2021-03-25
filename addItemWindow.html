@@ -18,7 +18,8 @@
 
         const submitForm=(e)=>{
             e.preventDefault()
-            console.log('abc')
+            const item=document.getElementById('item').value
+            ipcRenderer.send('item:add',item)
         }
 
         const form=document.querySelector('form')

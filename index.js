@@ -2,10 +2,13 @@ const electron=require('electron')
 const url=require('url')
 const path=require('path')
 
-const {app,BrowserWindow,Menu}=electron
+const {app,BrowserWindow,Menu,ipcMain}=electron
+
+let mainWindow
+let addItemWindow
 
 app.on('ready',()=>{
-    const mainWindow=new BrowserWindow({
+    mainWindow=new BrowserWindow({
         webPreferences:{
             nodeIntegration:true,
             contextIsolation: false,
@@ -26,7 +29,7 @@ app.on('ready',()=>{
 })
 
 const createAddItemWindow = () => {
-    const addItemWindow=new BrowserWindow({
+    addItemWindow=new BrowserWindow({
         title:'Add new item',
         width:300,
         height:200,
@@ -39,6 +42,13 @@ const createAddItemWindow = () => {
     // Load HTML
     addItemWindow.loadURL(`file://${__dirname}/addItemWindow.html`)
 }
+
+// Get item:add
+ipcMain.on('item:add',(e,item)=>{
+    console.log(item)
+    mainWindow.webContents.send('item:add',item)
+    addItemWindow.close()
+})
 
 // Menu template
 const mainMenuTemplate=[
