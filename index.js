@@ -4,6 +4,8 @@ const path=require('path')
 
 const {app,BrowserWindow,Menu,ipcMain}=electron
 
+process.env.NODE_ENV = 'production'
+
 let mainWindow
 let addItemWindow
 
